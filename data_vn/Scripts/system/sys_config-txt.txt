@@ -1,0 +1,48 @@
+
+栞 config_in
+
+スクリプト system\sys_config-pages.txt config_out
+
+//このスクリプトの読み込み中にはこのスクリプトで作られたボタンのみ活性化
+ボタン活性領域
+
+絵 menu_config sys\sys_config1.png  0 0 104 カメラ無視
+ボタン基本資料 sys\sys_close.png sys\sys_close@.png sys\sys_close@.png
+ボタン btn_close 814 19 105 カメラ無視
+
+ボタン基本資料 sys\sys_btnConfigPage-sys.png sys\sys_btnConfigPage-sys@.png sys\sys_btnConfigPage-sys@.png
+シスボタン btn_configPageSys 649 27 105 ジャンプ system\sys_config.txt config_in 
+
+//Skip Mode
+//skip 0 : フルスクーリーン (画面をモニターの解像度ににストレッチ)
+//skip 1 : ウィンドウ (ノベル解像度を維持)
+シスボタン btn_skip0 sys\sys_btnSkip1.png sys\sys_btnSkip1@.png sys\sys_btnSkip1@.png 401 121 105 カメラ無視 textSkip 0
+シスボタン btn_skip1 sys\sys_btnSkip2.png sys\sys_btnSkip2@.png sys\sys_btnSkip2@.png 682 120 105 カメラ無視 textSkip 1
+
+文字 t_skip_t 120 150 106 r-mplus-1c-m.ttf 28 カメラ無視 'Skip Mode
+文字 t_skip0 439 172 106  r-mplus-1c-m.ttf 16 カメラ無視 '(全部スキップ)
+文字 t_skip1 708 172 106  r-mplus-1c-m.ttf 16 カメラ無視 '(既読のみスキップ)
+
+文字 t_texts 120 220 106  r-mplus-1c-m.ttf 24 カメラ無視 'Text Speed
+~絵 texts_line sys\trackbar-line.png 380 215 106 カメラ無視
+トラックバー tr_TextS 380 223 107 530 textSpeed sys\sys_trackball.png
+
+文字 t_autos 120 265 106  r-mplus-1c-m.ttf 24 カメラ無視 'Auto Speed
+~絵 autos_line sys\trackbar-line.png 380 260 106 カメラ無視
+トラックバー tr_AutoS 380 268 107 530 autoSpeed sys\sys_trackball.png
+
+文字 t_autow 120 310 106  r-mplus-1c-m.ttf 24 カメラ無視 'Auto Wait
+~絵 autow_line sys\trackbar-line.png 380 305 106 カメラ無視
+トラックバー tr_AutoW 380 313 107 530 autoWait sys\sys_trackball.png
+
+キートリガー r.click ジャンプ config_out
+
+待機 ボタン選択
+
+///////////////////////////////////////////////////////////////
+栞 config_out
+
+スクリプト system\sys_config-pages.txt config_out
+
+script_fin
+

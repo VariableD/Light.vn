@@ -1,0 +1,12 @@
+~bg Classroom_01_day.jpg
+~bgm seimeinoizumi.ogg repeat
+
+textbox textbox01 50 400 91 800 0 arial.ttf 24
+useTextbox textbox01
+textboxSkin sys\textbar0.png 0 330
+textLineSize 40
+
+"Welcome to Light.vn!
+.Currently testing out english bindings for the engine-
+
+~cg noname scg2.png 596 162 90 

@@ -1,0 +1,35 @@
+
+///////////////////////////////////////////////////////////////
+
+栞 btnTouch1
+
+~絵 bar_top cg_bar.png 0 -92 80 カメラ無視
+~絵 bar_low cg_bar.png 0 482 80 カメラ無視
+~背景 Classroom_05_day.jpg
+
+script_fin
+
+栞 btnTouch2
+
+~絵 bar_top cg_bar.png 0 -92 80 カメラ無視
+~絵 bar_low cg_bar.png 0 482 80 カメラ無視
+~背景 Classroom_03_day.jpg
+
+script_fin
+
+///////////////////////////////////////////////////////////////
+
+栞 timer_func_erase_choice
+
+もし erased_choices == 1 here erase_choice_2
+
+栞 erase_choice_1
+変数 erased_choices = 1
+.アウト reply3 300
+script_fin
+
+栞 erase_choice_2
+~砂時計解除 timer0
+変数 erased_choices = 2
+.アウト reply2 300
+script_fin

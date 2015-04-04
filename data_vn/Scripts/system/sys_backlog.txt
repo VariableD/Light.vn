@@ -1,0 +1,62 @@
+
+栞 log_init
+
+//バックログ設定
+//注：バックログは正当な文字窓を設定する事で作動を始めます。
+//注：バックログのレイヤーは使用する文字窓のレイヤーの数値に
+//設定されます。
+//バックログ特性上大抵のリソースより前に出る必要がある点を
+//考慮し比較的高い数値に設定してください（ここでは201）
+
+文字窓 backlog_textbox 100 120 201 640 340 r-mplus-1c-m.ttf 20 カメラ無視
+使用文字窓 backlog_textbox 
+文字ワードラップ false
+//文字窓スキン sys_backlog.png 0 0
+バックログ設定 backlog_textbox 
+
+//ウィールアップ時バックログ召還
+//（現在スクリプトの「log_display」ブックマークから読み込むように設定）
+キートリガー wheel.up スクリプト system\sys_backlog.txt log_display
+
+script_fin
+
+クリア色 100 100 100
+///////////////////////////////////////////////////////////////
+栞 log_display
+
+//このスクリプトの読み込み中にはこのスクリプトで作られたボタンのみ活性化
+ボタン活性領域
+スクリプト textbox_sample.txt txt_clearToggles
+
+//注：メニューを含む全てのリソースより上にバックログイメージが
+//表示されるようレイヤーを高い数字にする
+絵 backlog_bg sys\sys_backlog.png 0 0 200 カメラ無視
+ボタン btn_close sys\sys_close.png sys\sys_close@.png sys\sys_close@.png 771 13 201 カメラ無視
+
+//バックログ機能開始
+イン バックログ
+イン backlog_bg 200
+
+//バックログ解除方法:
+//1. 右クリック
+//2. 「close」ボタンクリック 
+//3. バックログを最後までスクロール (自動的に全ての待機状態解除)
+キートリガー r.click ジャンプ log_out
+待機 ボタン選択
+
+///////////////////////////////////////////////////////////////
+栞 log_out
+
+//バックログと関連リソースを解除
+アウト バックログ
+アウト btn_close
+アウト backlog_bg 200
+
+//キートリガー設定
+//ウィールアップ：バックログ再び召還
+//右クリック：メニュー召還
+キートリガー wheel.up スクリプト system\sys_backlog.txt log_display
+キートリガー r.click スクリプト system\sys_menu.txt menu_show
+スクリプト textbox_sample.txt txt_setToggles
+
+

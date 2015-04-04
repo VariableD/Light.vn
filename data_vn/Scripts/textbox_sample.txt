@@ -1,0 +1,156 @@
+
+//注: 外部スクリプトを呼ぶ際, 
+//ex. スクリプト textbox_sample.txt
+//ファイルの始まりから 'script_fin' まで
+//(無い場合はファイルの終わりまで）
+//読んで元のスクリプト(caller script)に戻ります
+
+//注: ex. スクリプト textbox_sample.txt textbox_def
+//等最後にブックマークを指定した場合は
+//そのブックマークがある位置から外部スクリプト
+//の読み込みを開始します
+
+////////////////////////////////////////////////////////////////////////////////////
+//文字自動待機が設定されてない文字窓
+
+栞 textbox_noautowait
+//文字窓（テキストボックス）設定
+//注: 先に「使用文字窓」を設定しないと’文字フォント’
+//等のテキスト関連命令は適用されません
+
+文字窓 textbox0 60 350 89 824 0 r-mplus-1c-m.ttf 24 カメラ無視
+使用文字窓 textbox0
+文字ボールド true
+文字陰 1
+文字ワードラップ false
+文字窓スキン sys\textbar0.png 0 335
+文字方向 横
+文字自動待機 off
+
+//.イン textbox0 300
+
+//ボタン設定 (オートモード・スキップ)
+//注：オートとスキップはボタンを再クリックする事や
+//マウス右クリックで解除されます。
+シスボタン btn_tSkip sys\txt_skip.png sys\txt_skip@.png sys\txt_skip@.png 900 357 90 文字進行 2
+シスボタン btn_tAuto sys\txt_auto.png sys\txt_auto@.png sys\txt_auto@.png 902 397 90 文字進行 1
+
+//ctrlを押す事でスキップモードon/off
+キートリガー ctrl スクリプト textbox_sample.txt txt_skipToggle
+
+//spaceを押す事で文字窓の表示・非表示
+キートリガー space スクリプト textbox_sample.txt txt_visibleToggle
+
+//クリア色を元に戻す
+クリア色 0 0 0
+script_fin
+
+////////////////////////////////////////////////////////////////////////////////////
+栞 txt_visibleToggle
+
+もし textbox_show != 0 here toggle_hide
+
+透明度 textbox0 255
+シスボタン btn_tSkip sys\txt_skip.png sys\txt_skip@.png sys\txt_skip@.png 900 357 90 文字進行 2
+シスボタン btn_tAuto sys\txt_auto.png sys\txt_auto@.png sys\txt_auto@.png 902 397 90 文字進行 1
+
+変数 textbox_show = 1
+script_fin
+
+栞 toggle_hide
+
+透明度 textbox0 0
+アウト btn_tSkip, btn_tAuto
+変数 textbox_show = 0
+script_fin
+
+////////////////////////////////////////////////////////////////////////////////////
+栞 txt_skipToggle
+
+//注：文字進行（0:普通  1:オート  2:スキップ）
+//スキップ開始。
+//スキップが実効中の場合は、文字進行：普通に戻ります。
+文字進行 2
+
+script_fin
+
+////////////////////////////////////////////////////////////////////////////////////
+栞 txt_clearToggles
+
+キートリガー ctrl
+キートリガー space
+
+script_fin
+
+////////////////////////////////////////////////////////////////////////////////////
+栞 txt_setToggles
+
+//ctrlを押す事でスキップモードon/off
+キートリガー ctrl スクリプト textbox_sample.txt txt_skipToggle
+
+//spaceを押す事で文字窓の表示・非表示
+キートリガー space スクリプト textbox_sample.txt txt_visibleToggle
+
+script_fin
+
+////////////////////////////////////////////////////////////////////////////////////
+
+栞 textbox_vertical
+文字窓 textbox0 60 50 89 824 400 r-mplus-1c-m.ttf 24 カメラ無視
+使用文字窓 textbox0
+文字ボールド true
+文字陰 1
+文字ワードラップ false
+文字自動待機 off
+文字窓スキン none
+文字方向 縦
+
+script_fin
+
+////////////////////////////////////////////////////////////////////////////////////
+栞 textbox_fadeout
+
+アウト シスボタン 0 here
+.アウト textbox0 500
+
+script_fin
+
+~////////////////////////////////////////////////////////////////////////////////////
+//呼ぶ方法: 
+//'スクリプト textbox_sample.txt textbox_def'
+//注：スクリプトをこんな風にブックマークを指定して呼ぶと
+//ブックマーク以後から読み込みますのでブックマークの上
+//は無視されます。
+
+アウト textbox0
+クリア色 255 255 255
+栞 textbox_def
+
+//注：文字速度を設定しないとシステム全体数値
+//（コンフィグで設定される数値）に設定されます。
+
+文字窓 textbox0 60 350 89 824 0 r-mplus-1c-m.ttf 24 カメラ無視
+使用文字窓 textbox0
+文字サイズ 24
+//文字速度 30
+文字ボールド true
+文字陰 1
+文字ワードラップ false
+文字窓スキン sys\textbar0.png 0 335
+文字自動待機 on
+
+//ボタン設定 (オートモード・スキップ)
+//注：オートとスキップはボタンを再クリックする事や
+//マウス右クリックで解除されます。
+ボタン基本資料 sys\txt_skip.png sys\txt_skip@.png sys\txt_skip@.png
+シスボタン btn_tSkip 900 357 90 文字進行 2
+
+ボタン基本資料 sys\txt_auto.png sys\txt_auto@.png sys\txt_auto@.png
+シスボタン btn_tAuto 902 397 90 文字進行 1
+
+//ctrlを押す事でスキップモードon/off
+キートリガー ctrl スクリプト textbox_sample.txt txt_skipToggle
+
+クリア色 0 0 0
+script_fin
+

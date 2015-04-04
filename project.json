@@ -1,0 +1,35 @@
+{
+  "project_type": "javascript",
+
+  "debugMode" : 1,
+  "showFPS" : false,
+  "frameRate" : 60,
+  "id" : "gameCanvas",
+  "renderMode" : 0,
+  "engineDir":"./data_vn/_frameworks/cocos2d-html5",
+
+  "modules" : ["cocos2d", "extensions"],
+
+  "jsList" : [
+    "./data_vn/_src/resource.js",
+  "./data_vn/_src/EnumStructs.js",
+  "./data_vn/_src/NHelper.js",
+
+  "./data_vn/_src/app.js",
+  "./data_vn/_src/Services.js",
+  "./data_vn/_src/Services_Input.js",
+  "./data_vn/_src/Parser.js",
+  "./data_vn/_src/parser_parse.js",
+  "./data_vn/_src/parser_helpers.js",
+  "./data_vn/_src/Entity.js",
+  "./data_vn/_src/CmdHandlerCG.js",
+  "./data_vn/_src/CmdHandlerButton.js",
+  "./data_vn/_src/CmdHandlerText.js",
+    "./data_vn/_src/CmdHandlerMedia.js",
+  "./data_vn/_src/CmdHandlerTween.js",
+  "./data_vn/_src/CmdHandlerScript.js",
+    "./data_vn/_src/CmdHandlerVar.js",
+    "./data_vn/_src/CmdHandlerSystem.js"
+
+  ]
+}

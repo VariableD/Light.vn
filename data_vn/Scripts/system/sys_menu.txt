@@ -1,0 +1,73 @@
+
+//バックログ宣言
+スクリプト system\sys_backlog.txt
+
+///////////////////////////////////////////////////////////////
+
+//メニュー
+栞 menu_trigger
+キートリガー r.click スクリプト system\sys_menu.txt menu_show
+script_fin
+
+栞 menu_show
+
+//このスクリプトの読み込み中にはこのスクリプトで作られたボタンのみ活性化
+ボタン活性領域
+透明度 文字窓 0 //現在表示中の文字窓を全て隠す
+スクリプト textbox_sample.txt txt_clearToggles
+
+//メニューイメージとバトンを設定
+//注：ボタン宣言後エディターのプレビュー画面の上で
+//ボタンに触れるとタッチイメージに変わります。
+//（ボタン位置調整時、これを利用すれば調整が
+// もっと楽に出来ます）
+
+//注：名前の先に[^]を付けると、セーブスクリーンショットに保存されません。
+絵 ^menu sys\sys_menu.png 0 0 103 カメラ無視
+
+//注：ボタンのレイヤーがメニューイメージのレイヤ
+//より高いように設定
+ボタン ^button1 sys\sys_menu1.png sys\sys_menu1@.png sys\sys_menu1@.png 738 198 104 カメラ無視 スクリプト system\sys_backlog.txt log_display
+ボタン ^button2 sys\sys_menu2.png sys\sys_menu2@.png sys\sys_menu2@.png 741 271 104 カメラ無視 スクリプト system\sys_load.txt load_display
+ボタン ^button3 sys\sys_menu3.png sys\sys_menu3@.png sys\sys_menu3@.png 743 348 104 カメラ無視 スクリプト system\sys_save.txt save_display
+ボタン ^button4 sys\sys_menu4.png sys\sys_menu4@.png sys\sys_menu4@.png 734 414 104 カメラ無視 スクリプト system\sys_config.txt config_in
+
+//ダイアログ 'タイトルへ戻りますか？' ジャンプ tut_text.txt
+
+//メニューイメージ生成時フェードイン効果追加
+//イン menu 200
+キートリガー r.click ジャンプ menu_out
+キートリガー wheel.up //メニュー表示中はバックログ召還を遮断
+
+//ボタンが選択されるまで待つ
+待機 ボタン選択
+ジャンプ menu_show
+script_fin
+
+///////////////////////////////////////////////////////////////
+
+//メニュー関連リソース全部解除
+栞 menu_out
+アウト ^button1, ^button2, ^button3, ^button4
+アウト ^menu
+
+//右クリックでメニューが又召還されるように設定
+//ウィールアップでバックログが召還されるように設定
+キートリガー r.click スクリプト system\sys_menu.txt menu_show
+キートリガー wheel.up スクリプト system\sys_backlog.txt log_display
+スクリプト textbox_sample.txt txt_setToggles
+
+もし textbox_show == 0 here menu_out_end
+
+透明度 文字窓 255 //文字窓を全て表示
+
+栞 menu_out_end
+script_fin
+
+///////////////////////////////////////////////////////////////
+栞 text_skip
+
+script_fin
+
+//注意：スクリプトの最後に１行以上の空き空間を残してください。
+

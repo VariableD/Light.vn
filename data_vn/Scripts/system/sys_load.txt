@@ -1,0 +1,49 @@
+
+栞 load_display
+
+//ロードスクリーン画面設定
+//このスクリプトの読み込み中にはこのスクリプトで作られたボタンのみ活性化
+ボタン活性領域
+
+//注：カメラ操作の影響を受けないよう全てのリソースに「nocamera]設定。
+
+絵 menu_load sys\sys_bgload.png  0 0 105 カメラ無視
+ボタン基本資料 sys\sys_close.png sys\sys_close@.png sys\sys_close@.png
+ボタン btn_close 799 13 105 カメラ無視
+
+ボタン基本資料 sys\saveslot.png sys\saveslot@.png sys\saveslot@.png
+シスボタン load_slot1 66 161 105 カメラ無視 loadslot 1
+シスボタン load_slot2 394 160 105 カメラ無視 loadslot 2
+シスボタン load_slot3 719 155 105 カメラ無視 loadslot 3
+シスボタン load_slot4 66 361 105 カメラ無視 loadslot 4
+シスボタン load_slot5 394 359 105 カメラ無視 loadslot 5
+シスボタン load_slot6 719 355 105 カメラ無視 loadslot 6
+
+ボタン基本資料 sys\sys_delete.png sys\sys_delete@.png sys\sys_delete@.png
+シスボタン ^save_delete1 300 301 105 カメラ無視 savedelete 1
+シスボタン ^save_delete2 628 300 105 カメラ無視 savedelete 2
+シスボタン ^save_delete3 954 295 105 カメラ無視 savedelete 3
+シスボタン ^save_delete4 303 500 105 カメラ無視 savedelete 4
+シスボタン ^save_delete5 630 499 105 カメラ無視 savedelete 5
+シスボタン ^save_delete6 950 495 105 カメラ無視 savedelete 6
+
+//右クリック時ロード画面解除
+キートリガー r.click ジャンプ load_out
+
+//注：シスボタンのクリックは「待機 buttonSelect」状態に影響を与えません。
+待機 ボタン選択
+//script_fin
+
+///////////////////////////////////////////////////////////////
+
+栞 load_out
+
+//注：アウト命令に「here]を付けるとこのスクリプトに作られた
+//物だけをフェードアウトさせます。
+アウト btn_close
+アウト シスボタン 0 here
+アウト menu_load
+//remove Buttons
+
+script_fin
+

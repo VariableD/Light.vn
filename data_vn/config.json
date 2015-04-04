@@ -1,0 +1,14 @@
+{
+    "Settings": {
+        "Width": 1024,
+        "Height": 576,
+        "NovelTitle": "Light.vn Sample",
+	"InitialScript":"start0.txt"
+    },
+    "EditorSettings": {
+        "ScriptList": ["start0.txt", "tut_basic.txt", "tut_text.txt", "tut_var.txt", "system/sys_menu.txt"]
+    },
+    "UserSettings": {
+
+    }
+}

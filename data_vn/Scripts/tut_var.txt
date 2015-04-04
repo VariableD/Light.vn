@@ -1,0 +1,152 @@
+
+//現在可能演算：+=, -=, *=, /=
+//(既存数値に+, -, *, /)
+//現在可能比較条件：==, !=, <, <=, >, >=
+//注：変数関連命令は全てゲームモード状態で作動します。
+
+栞 tut_start
+
+クリア
+~バックログリセット
+
+背景音 omoide_loft.ogg 反復
+イン bgm 5000
+
+スクリプト textbox_sample.txt textbox_noautowait
+
+栞 ゲームスタート
+
+アウト  reply1
+アウト  reply2
+
+変数 正解数 = 0 //「正解数」変数を登録、０に初期化
+//注：変数を使用する演算をするには、こんな風に先ず
+//変数名を登録し、初期化する必要があります。
+
+"ゲームスタート! 現在正解数： {{ 正解数 }} \w
+
+~///////////////////////////////////////////////////////////
+栞 問１
+
+~ボタン基本資料 btn_sel.png btn_sel@.png btn_sel.png
+ボタン reply1 262 80 90 ジャンプ 問１不正解 
+ボタン文字 reply1 r-mplus-1c-m.ttf 24 "1
+
+~ボタン reply2 262 160 90 ジャンプ 問１正解 
+ボタン文字 reply2 r-mplus-1c-m.ttf 24 "2
+
+~ボタン reply3 262 240 90 ジャンプ 問１不正解
+ボタン文字 reply3 r-mplus-1c-m.ttf 24 "3
+
+~砂時計 timer0 2000 反復 スクリプト effects.txt timer_func_erase_choice
+
+"1+1は？
+..注意：時間の経過とともに選択肢が消えます。
+~待機 ボタン選択
+
+//
+栞 問１正解
+~砂時計解除 timer0
+~アウト reply1, reply2, reply3
+~効果音 correct se_maoudamashii_onepoint30.ogg 
+"正解だよ！ \w
+~変数 正解数 += 1 //既存「正解数」変数に+1
+ジャンプ 問2
+
+//
+~栞 問１不正解
+~砂時計解除 timer0
+~アウト reply1, reply2, reply3
+~効果音 incorrect se_maoudamashii_onepoint33.ogg 
+" ....\w
+~ジャンプ 問2
+
+~///////////////////////////////////////////////////////////
+栞 問2
+
+~ボタン基本資料 btn_sel.png btn_sel@.png btn_sel.png
+ボタン reply1 262 80 90 ジャンプ 問2不正解
+ボタン文字 reply1 r-mplus-1c-m.ttf 24 "5
+
+~ボタン reply2 262 160 90 ジャンプ 問2不正解 
+ボタン文字 reply2 r-mplus-1c-m.ttf 24 "7
+
+~ボタン reply3 262 240 90 ジャンプ 問2正解 
+ボタン文字 reply3 r-mplus-1c-m.ttf 24 "6
+
+~砂時計 timer0 3000 ジャンプ 問2時間経過
+
+"2*3は？
+..制限時間：３秒
+~待機 ボタン選択
+
+//
+栞 問2正解
+~砂時計解除 timer0
+~アウト reply1, reply2, reply3
+~効果音 correct se_maoudamashii_onepoint30.ogg 
+"正解だよ！\w
+~変数 正解数 += 1 //既存「正解数」変数に+1
+ジャンプ 結果発表
+
+//
+~栞 問2不正解
+~砂時計解除 timer0
+~アウト reply1, reply2, reply3
+~効果音 incorrect se_maoudamashii_onepoint33.ogg 
+" ....\w
+~ジャンプ 結果発表
+
+~栞 問2時間経過
+~アウト reply1, reply2, reply3
+~効果音 incorrect se_maoudamashii_onepoint33.ogg 
+" ....もっと早く選ぶべきだったな。\w
+~ジャンプ 結果発表
+
+~///////////////////////////////////////////////////////////
+栞 結果発表
+変数 問題数 = 2
+
+"結果発表: {{ 正解数 }} / {{ 問題数 }} \w
+
+~//「正解数 == 2」 成立時：「here 達成」にジャンプ
+//不成立時：「here 未達成」にジャンプ
+もし 正解数 == 2 here 達成 違ったら here 未達成
+
+//変数 asdf = 'This is yours'
+//もし asdf == 'This is mine' tut_text.txt tut_start 違ったら here 未達成
+
+栞 達成
+-".おめでとう！全てクリア！\w
+~ジャンプ 選択の時間
+
+栞 未達成
+-".また挑戦してみよう！\w
+~ジャンプ 選択の時間
+
+//注：「もし 正解数 != 2 here 未達成」、
+//「もし 正解数 == 問題数 here 達成 違ったら here 未達成」
+//等で同じ結果が得られます
+
+~///////////////////////////////////////////////////////////
+栞 選択の時間
+
+~アウト  reply3
+
+~ボタン基本資料 btn_sel.png btn_sel@.png btn_sel.png
+ボタン reply1 262 100 90 ジャンプ ゲームスタート 
+ボタン文字 reply1 r-mplus-1c-m.ttf 24 "当然だ！
+
+~ボタン reply2 262 180 90
+ボタン文字 reply2 r-mplus-1c-m.ttf 24 "いや、次の敵の居場所は？
+
+"またやってみる？
+~待機 ボタン選択
+
+~///////////////////////////////////////////////////////////
+
+アウト  reply1
+アウト  reply2
+
+ジャンプ start0.txt tutorial_jump
+

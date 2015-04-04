@@ -1,0 +1,29 @@
+
+//注：このスクリプトで生成されたリソースは全て
+//セーブされません
+//注：メッセージボックスが他の全てのリソースより前に出るよう 
+//（バックログも含め）
+//使用素材のレイヤーは高い数値に設定してください（ここでは255)
+
+栞 msg_in
+
+//このスクリプトの読み込み中にはこのスクリプトで作られたボタンのみ活性化
+ボタン活性領域
+
+絵 msg_box sys\sys_msg.png  0 0 255 カメラ無視
+イン msg_box 300
+
+文字 msg_str 370 223 255  r-mplus-1c-m.ttf 24 カメラ無視 '{{msg_str}}'
+
+ボタン btn_yes sys\msg_ok.png sys\msg_ok@.png sys\msg_ok@.png 343 306 255 カメラ無視 msgvar yes
+ボタン btn_no sys\msg_cancel.png sys\msg_cancel@.png sys\msg_cancel@.png 507 306 255 カメラ無視 msgvar no 
+
+待機 メッセージ選択
+
+///////////////////////////////////////////////////////////////
+栞 msg_out
+
+アウト msg_str
+アウト btn_yes, btn_no
+アウト msg_box 300
+

@@ -1,0 +1,39 @@
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+栞 config_sys_in
+
+スクリプト system\sys_config-pages.txt config_out
+
+script_fin
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+栞 config_txt_in
+
+script_fin
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+栞 config_out
+
+//注：アウト命令に「here]を付けるとこのスクリプトに作られた
+//物だけをフェードアウトさせます。
+//注: アウト シスボタンはトラックバーまで解除
+アウト t_screen_t, t_screen0, t_screen2, t_mVol, t_bgm, t_sfx, t_voice, t_texts, t_autos, t_autow
+アウト t_skip_t, t_skip0, t_skip1
+アウト mVol_line, bgm_line, sfx_line, voice_line, texts_line, autos_line, autow_line
+アウト tr_mVol, tr_Bgm, tr_Sfx, tr_Voice, tr_TextS, tr_AutoS, tr_AutoW
+
+アウト btn_configPageText, btn_configPageSys, btn_win0, btn_win1, btn_win2, btn_skip0, btn_skip1
+
+アウト btn_close
+//アウト シスボタン 0 here
+アウト menu_config
+//remove Buttons
+
+
+

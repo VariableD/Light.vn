@@ -1,0 +1,62 @@
+
+栞 config_in
+
+スクリプト system\sys_config-pages.txt config_out
+
+//このスクリプトの読み込み中にはこのスクリプトで作られたボタンのみ活性化
+ボタン活性領域
+
+絵 menu_config sys\sys_config0.png  0 0 104 カメラ無視
+ボタン基本資料 sys\sys_close.png sys\sys_close@.png sys\sys_close@.png
+ボタン btn_close 814 19 105 カメラ無視
+
+ボタン基本資料 sys\sys_btnConfigPage-text.png sys\sys_btnConfigPage-text@.png sys\sys_btnConfigPage-text@.png
+シスボタン btn_configPageText 413 28 105 ジャンプ system\sys_config-txt.txt config_in
+
+//Window Mode
+//screen 0 : フルスクーリーン (画面をモニターの解像度ににストレッチ)
+//screen 1 : ウィンドウ (ノベル解像度を維持)
+//screen 2 : フルウィンドウ (ノベル解像度の比率を維持したまま画面をモニターにストレッチ)
+シスボタン btn_win0 sys\sys_btnScreen0.png sys\sys_btnScreen0@.png sys\sys_btnScreen0@.png 361 121 105 カメラ無視 screen 0
+シスボタン btn_win1 sys\sys_btnScreen1.png sys\sys_btnScreen1@.png sys\sys_btnScreen1@.png 542 120 105 カメラ無視 screen 1
+シスボタン btn_win2 sys\sys_btnScreen2.png sys\sys_btnScreen2@.png sys\sys_btnScreen2@.png 739 121 105 カメラ無視 screen 2
+
+文字 t_screen_t 100 150 106 r-mplus-1c-m.ttf 28 カメラ無視 'Window Mode
+文字 t_screen0 379 172 106  r-mplus-1c-m.ttf 16 カメラ無視 '(画面いっぱいに拡大)
+文字 t_screen2 745 172 106  r-mplus-1c-m.ttf 16 カメラ無視 '(縦横比を固定して拡大)
+//note: perhaps change to 
+//シスボタン btn_win2 739 141 105 nocamera screen 2 
+//ボタン文字 btn_win2 "Full-Window
+
+//note: perhaps
+//btn-highlight: 0(outline)/1(colour inside) colour-touch colour-click
+
+//note: トラックバーはプレイモードにだけ操作できます
+
+文字 t_mVol 100 225 106  r-mplus-1c-m.ttf 24 カメラ無視 'Master Volume
+~絵 mVol_line sys\trackbar-line.png 380 220 106 カメラ無視
+トラックバー tr_mVol 380 228 107 530 master_vol sys\sys_trackball.png
+
+文字 t_bgm 120 275 106  r-mplus-1c-m.ttf 24 カメラ無視 'BGM (背景音)
+~絵 bgm_line sys\trackbar-line.png 380 270 106 カメラ無視
+トラックバー tr_Bgm 380 278 107 530 背景音 sys\sys_trackball.png
+
+文字 t_sfx 120 320 106  r-mplus-1c-m.ttf 24 カメラ無視 'SE (効果音)
+~絵 sfx_line sys\trackbar-line.png 380 315 106 カメラ無視
+トラックバー tr_Sfx 380 323 107 530 効果音 sys\sys_trackball.png
+
+文字 t_voice 120 365 106  r-mplus-1c-m.ttf 24 カメラ無視 'Voice
+~絵 voice_line sys\trackbar-line.png 380 360 106 カメラ無視
+トラックバー tr_Voice 380 368 107 530 ボイス sys\sys_trackball.png
+
+キートリガー r.click ジャンプ config_out
+
+待機 ボタン選択
+
+///////////////////////////////////////////////////////////////
+栞 config_out
+
+スクリプト system\sys_config-pages.txt config_out
+
+script_fin
+
