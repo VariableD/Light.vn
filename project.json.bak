@@ -6,7 +6,7 @@
   "frameRate" : 60,
   "id" : "gameCanvas",
   "renderMode" : 0,
-  "engineDir":"./data_vn/_frameworks/cocos2d-html5",
+  "engineDir":"https://rawgithub.com/hsdk123/Light.vn/gh-pages/data_vn/_frameworks/cocos2d-html5",
 
   "modules" : ["cocos2d", "extensions"],
 
